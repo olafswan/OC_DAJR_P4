@@ -11,7 +11,6 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const closeBtn = document.querySelector(".close");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -20,6 +19,11 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 function launchModal() {
   modalbg.style.display = "block";
 }
+// -------------------------
+// issue#1: fermer la modale
+// -------------------------
+// DOM Elements
+const closeBtn = document.querySelector(".close");
 
 // close modal event
 closeBtn.addEventListener("click", closeModal);
@@ -28,3 +32,9 @@ closeBtn.addEventListener("click", closeModal);
 function closeModal() {
   modalbg.style.display = "none";
 }
+// -------------------------
+
+// issue#2: Implémenter entrées du formulaire
+// ------------------------------------------
+
+// ------------------------------------------
