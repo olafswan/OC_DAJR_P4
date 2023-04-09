@@ -38,3 +38,13 @@ function closeModal() {
 // ------------------------------------------
 
 // ------------------------------------------
+
+// testing mode
+// ------------
+const testingBtn = document.querySelector(".testing");
+testingBtn.addEventListener("click", testingMode);
+function testingMode() {
+  // input tests below
+  console.log("hello world");
+}
+// ------------
