@@ -36,7 +36,14 @@ function closeModal() {
 
 // issue#2: Implémenter entrées du formulaire
 // ------------------------------------------
+// get first
+const first = document.getElementById("first");
 
+// get first value
+const firstValue = first.value;
+
+// get first value bis
+const firstValue2 = document.getElementById("first").value;
 // ------------------------------------------
 
 // testing mode
@@ -45,6 +52,10 @@ const testingBtn = document.querySelector(".testing");
 testingBtn.addEventListener("click", testingMode);
 function testingMode() {
   // input tests below
-  console.log("hello world");
+  console.log("testingMode is on");
+  console.log(first);
+  console.log(firstValue);
+  console.log(firstValue2);
+  console.log("testingMode is off");
 }
 // ------------
