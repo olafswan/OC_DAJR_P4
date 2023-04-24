@@ -81,8 +81,10 @@ const inputsIds = [
 
 // afficher le message d'erreur et la classe CSS erreur
 function showError(element, message) {
+  // ajoute la classe data-error-visible
   element.setAttribute("data-error-visible", "true");
   // TODO comprendre comment la classe : data-error-visible="true"
+  // ajoute le message d'erreur en content de l'after
   element.setAttribute("data-error", message);
 }
 
@@ -101,11 +103,25 @@ let firstIsValid,
   locationIsValid,
   conditionsIsValid;
 
+// vérifier si un des boutons radios est séléctionné
+function checkRadioSelected() {
+  const radios = document.getElementsByName("location");
+  let selected = false;
+  for (let i = 0; i < radios.length; i++) {
+    if (radios[i].checked) {
+      selected = true;
+      break;
+    }
+  }
+  return selected;
+}
+
 // fonction pour vérifier la validité de tous les input et afficher les messaqges d'erreur
 function testInputsValidity() {
   for (let index = 0; index < inputsIds.length; index++) {
     // stockage du nom de l'id (ex: first)
     const inputId = inputsIds[index].id;
+    const input = document.getElementById(inputId);
 
     // stockage du message d'erreur correspondant (ex: Veuillez entrer 2 caractères)
     const inputErrorMessage = inputsIds[index].errorMessage;
@@ -123,11 +139,10 @@ function testInputsValidity() {
           // fait passer la variable sur true
           firstIsValid = true;
         } else {
-          console.log("** error  in " + inputId);
           // fait passer al variable sur true
           firstIsValid = false;
           // affiche le message d'erreur sur l'input
-          showError(first.closest(".formData"), inputErrorMessage);
+          showError(input.closest(".formData"), inputErrorMessage);
           // TODO trouver comment remplacer first par la variable inputId pour grouper les case first et last
         }
         break;
@@ -201,10 +216,13 @@ function testInputsValidity() {
         hideError(location1.closest(".formData"));
         // verifie la condition de validité de la donnée
         // TODO check why if else don't work / locationIsValid is always true
-        if (document.querySelector('input[name="location"]:checked')) {
+        // if (!document.querySelector('input[name="location"]:checked') == null) {
+        if (checkRadioSelected()) {
+          console.log("case location1: je joue true !!!");
           // fait passer la variable sur true
           locationIsValid = true;
         } else {
+          console.log("case location1: je joue false !!!");
           // fait passer la variable sur false
           locationIsValid = false;
           // affiche le message d'erreur sur l'input
@@ -216,13 +234,12 @@ function testInputsValidity() {
         // enlève l'eventuel message d'erreur
         hideError(checkbox1.closest(".formData"));
         // verifie la condition de validité de la donnée
-        // TODO check why if else don't work / conditionsIsValid is always undefined
         if (document.querySelector('input[id="checkbox1"]:checked')) {
           // fait passer la variable sur true
-          locationIsValid = true;
+          conditionsIsValid = true;
         } else {
           // fait passer la variable sur false
-          locationIsValid = false;
+          conditionsIsValid = false;
           // affiche le message d'erreur sur l'input
           showError(checkbox1.closest(".formData"), inputErrorMessage);
         }
@@ -255,13 +272,29 @@ function testInputsValidity() {
     console.log("*** Formulaire invalide ! ***");
   }
 
-  console.log("first is valid ?", firstIsValid);
-  console.log("last is valid ?", lastIsValid);
-  console.log("email is valid ?", emailIsValid);
-  console.log("birthdate is valid ?", birthdateIsValid);
-  console.log("quantity is valid ?", quantityIsValid);
+  // console.log("first is valid ?", firstIsValid);
+  // console.log("last is valid ?", lastIsValid);
+  // console.log("email is valid ?", emailIsValid);
+  // console.log("birthdate is valid ?", birthdateIsValid);
+  // console.log("quantity is valid ?", quantityIsValid);
+  // console.log("location is valid ?", locationIsValid);
+  // console.log("conditions is valid ?", conditionsIsValid);
+
+  console.log("********************");
+  console.log("*TEST RADIO BUTTONS*");
+  console.log("methode 1 (retourne null si aucun radio coché)");
+  console.log(
+    "document.querySelector('input[name=\"location\"]:checked')",
+    document.querySelector('input[name="location"]:checked')
+  );
+
+  console.log("methode 2 (retourne false si aucun radio coché)");
+  console.log("checkRadioSelected", checkRadioSelected());
+
   console.log("location is valid ?", locationIsValid);
-  console.log("conditions is valid ?", conditionsIsValid);
+  console.log("********************");
+
+  console.log("********************");
 }
 
 // fonction d'ouverture de la fenetre de confirmation d'inscription
