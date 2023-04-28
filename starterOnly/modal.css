@@ -557,123 +557,19 @@ footer {
   transition: 0.3s;
 } */
 
-.confirmation-container {
-  width: 95%;
-  max-width: 500px;
-  min-width: 300px;
-  padding: 30px;
+/* classe pour masquer le formulaire */
+.hidden {
+  opacity: 0;
+}
+
+.text-confirmation {
   position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #232323;
-  border-radius: 10px;
-  color: #fff;
-  z-index: 99;
-  display: none;
-}
-
-confirmation {
-  padding-top: 10px;
-}
-
-.close2 {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  width: 32px;
-  height: 32px;
-  opacity: 1;
-  cursor: pointer;
-  transform: scale(0.7);
-}
-.close2:before,
-.close2:after {
-  position: absolute;
-  left: 15px;
-  content: " ";
-  height: 33px;
-  width: 3px;
-  background-color: #fff;
-}
-.close2:before {
-  transform: rotate(45deg);
-}
-.close2:after {
-  transform: rotate(-45deg);
-}
-
-/* element de confirmation */
-
-.bground-confirmation {
-  display: none;
-  position: fixed;
-  z-index: 2;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  overflow: auto;
-  background-color: rgba(26, 39, 156, 0.4);
-}
-
-.content-confirmation {
-  margin: 5% auto;
-  width: 100%;
-  max-width: 500px;
-  animation-name: modalopen;
-  animation-duration: var(--modal-duration);
-  background: #232323;
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-  color: #fff;
-  padding-top: 10px;
-}
-
-.close-confirmation {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  width: 32px;
-  height: 32px;
-  opacity: 1;
-  cursor: pointer;
-  transform: scale(0.7);
-}
-.close-confirmation:before,
-.close-confirmation:after {
-  position: absolute;
-  left: 15px;
-  content: " ";
-  height: 33px;
-  width: 3px;
-  background-color: #fff;
-}
-.close-confirmation:before {
-  transform: rotate(45deg);
-}
-.close-confirmation:after {
-  transform: rotate(-45deg);
-}
-.btn-submit-confirmation {
-  background: #fe142f;
-  display: block;
-  margin: 0 auto;
-  border-radius: 7px;
-  font-size: 1rem;
-  padding: 12px 82px;
-  color: #fff;
-  cursor: pointer;
-  border: 0;
-}
-.modal-body-confirmation {
-  padding: 15px 8%;
-  margin: 15px auto;
-}
-
-.modal-body-confirmation p {
+  top: 45%;
+  right: 50%;
+  transform: translateX(50%);
+  width: 90%;
   font-weight: normal;
+  font-size: 20px;
+  line-height: 150%;
   text-align: center;
-  margin: auto;
 }
