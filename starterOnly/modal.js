@@ -36,8 +36,15 @@ const form = document.querySelector("form");
 form.addEventListener("submit", (e) => {
   // empeche la modal de se fermer au click
   e.preventDefault();
-  // lance la fonction de test des inputs
-  testInputsValidity();
+  // si le formulaire n'a pas encore été validé
+  if (submitBtn.value == "C'est parti") {
+    // lancer la fonction de test des inputs
+    testInputsValidity();
+  } else {
+    // fermer la modale
+    closeModal();
+    restoreForm();
+  }
 });
 
 // récupère les données entrées dans un champ en fonction de son id
@@ -144,7 +151,6 @@ function testInputsValidity() {
           inputId === "first" ? (firstIsValid = false) : (lastIsValid = false);
           // affiche le message d'erreur sur l'input
           showError(input.closest(".formData"), inputErrorMessage);
-          // TODO trouver comment remplacer first par la variable inputId pour grouper les case first et last
         }
         break;
 
@@ -192,7 +198,6 @@ function testInputsValidity() {
         // enlève l'eventuel message d'erreur
         hideError(location1.closest(".formData"));
         // verifie la condition de validité de la donnée
-        // TODO check why if else don't work / locationIsValid is always true
         if (checkRadioSelected()) {
           // fait passer la variable sur true
           locationIsValid = true;
@@ -236,58 +241,78 @@ function testInputsValidity() {
     console.log("*** Formulaire valide ! ***");
     // efface le formulaire
     form.reset();
-    // ferme la modale
-    closeModal();
-    // affiche la fenetre de confirmation d'inscription
-    setTimeout(() => {
-      openConfirmation();
-    }, 100);
+    // affiche le message de confirmation d'inscription
+    showConfirmationMessage();
   } else {
     console.log("*** Formulaire invalide ! ***");
   }
-
-  console.log("first is valid ?", firstIsValid);
-  console.log("last is valid ?", lastIsValid);
-  console.log("email is valid ?", emailIsValid);
-  console.log("birthdate is valid ?", birthdateIsValid);
-  console.log("quantity is valid ?", quantityIsValid);
-  console.log("location is valid ?", locationIsValid);
-  console.log("conditions is valid ?", conditionsIsValid);
-
-  // console.log("********************");
-  // console.log("*TEST RADIO BUTTONS*");
-  // console.log("methode 1 (retourne null si aucun radio coché)");
-  // console.log(
-  //   "document.querySelector('input[name=\"location\"]:checked')",
-  //   document.querySelector('input[name="location"]:checked')
-  // );
-
-  // console.log("methode 2 (retourne false si aucun radio coché)");
-  // console.log("checkRadioSelected", checkRadioSelected());
-
-  // console.log("location is valid ?", locationIsValid);
-  // console.log("********************");
-
-  // console.log("********************");
 }
 
-// fonction d'ouverture de la fenetre de confirmation d'inscription
-function openConfirmation() {
-  confirmationbg.style.display = "block";
+// // ancienne methode de fentere de remerciement a suppr
+
+// // fonction d'ouverture de la fenetre de confirmation d'inscription
+// function openConfirmation() {
+//   confirmationbg.style.display = "block";
+// }
+
+// // DOM Elements
+// const confirmationbg = document.querySelector(".bground-confirmation");
+// const closeConfirmationBtn = document.querySelector(".close-confirmation");
+// const submitConfirmationBtn = document.querySelector(
+//   ".btn-submit-confirmation"
+// );
+
+// // event click sur bouton close (X et Fermer)
+// closeConfirmationBtn.addEventListener("click", closeConfirmation);
+// submitConfirmationBtn.addEventListener("click", closeConfirmation);
+
+// // fonction de fermeture de la fenetre de confirmation
+// function closeConfirmation() {
+//   confirmationbg.style.display = "none";
+// }
+
+// //* gerer l'affichage du message de remerciement
+
+// -----------------------------------------------------
+// selection des elements du DOM
+const modalElements = document.querySelectorAll(".formData");
+const modalElements2 = document.querySelector(".text-label");
+const submitBtn = document.querySelector(".btn-submit");
+const modalBody = document.querySelector(".modal-body");
+
+// affiche le message de remerciement
+function showConfirmationMessage() {
+  // masquage des elements du formulaire
+  for (var i = 0; i < modalElements.length; i++) {
+    // ajout de la classe hidden à tous les elements de classe .formData
+    modalElements[i].classList.add("hidden");
+  }
+  // ajout de la classe hidden à  l'element de classe .text-label
+  modalElements2.classList.add("hidden");
+
+  // modification du contenu du bouton submit
+  submitBtn.value = "Fermer";
+
+  // création d'un div
+  const div = document.createElement("div");
+  // ajout d'HTML dans cette div
+  div.innerHTML = "Merci pour<br />votre inscription";
+  // ajout d'une class CSS à cette div
+  div.classList.add("text-confirmation");
+  // ajout de cette div en enfant de l'element de class modal-body
+  modalBody.append(div);
 }
 
-// DOM Elements
-const confirmationbg = document.querySelector(".bground-confirmation");
-const closeConfirmationBtn = document.querySelector(".close-confirmation");
-const submitConfirmationBtn = document.querySelector(
-  ".btn-submit-confirmation"
-);
-
-// event click sur bouton close (X et Fermer)
-closeConfirmationBtn.addEventListener("click", closeConfirmation);
-submitConfirmationBtn.addEventListener("click", closeConfirmation);
-
-// fonction de fermeture de la fenetre de confirmation
-function closeConfirmation() {
-  confirmationbg.style.display = "none";
+// reinitialisation du formulaire
+function restoreForm() {
+  // suppresion du message de remerciement
+  const div = document.querySelector(".text-confirmation");
+  div.remove();
+  // boucle sur la nodelist des elements de classe .formData
+  for (var i = 0; i < modalElements.length; i++) {
+    // suppression de la classe hidden à tous les elements de classe .formData
+    modalElements[i].classList.remove("hidden");
+  }
+  // suppression de la classe hidden à l'elements de classe .text-label
+  modalElements2.classList.remove("hidden");
 }
