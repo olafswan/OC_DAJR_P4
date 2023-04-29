@@ -1,4 +1,8 @@
-# Scénario
+#### Projet 4 de la formation "Développeur d'application - JavaScript React" par OpenClassrooms
+
+# Créez une landing page avec Javascript
+
+### Scénario :
 Vous avez récemment été embauché comme développeur Front-End junior dans une PME, GameOn, spécialisée dans les conférences et les concours de jeux. Vous avez fait du shadowing de votre développeur principal, Erika, pour suivre son travail au quotidien.
 
 
@@ -43,8 +47,21 @@ Merci beaucoup,
 
 Erika
 ```
+
 Vous ouvrez les maquettes pour avoir une idée de ce à quoi ressemble la page d'accueil : 
 
 ![Maquette du site GameOn](https://user.oc-static.com/upload/2021/12/15/16395717662959_HomePage.png)
 
 Il y a beaucoup de travail à faire, mais vous êtes prêt à mettre en pratique vos compétences en JavaScript. 
+
+### Liens :
+[Maquette figma](https://www.figma.com/file/B7NKBDvSI18uoMLJgpnh48/UI-Design-GameOn-FR?node-id=106%3A630)
+
+[GitHub repository](https://github.com/OpenClassrooms-Student-Center/GameOn-website-FR/)
+
+[Issues à résoudre](https://github.com/OpenClassrooms-Student-Center/GameOn-website-FR/issues)
+
+### Cours :
+[Apprenez à programmer avec JavaScript](https://openclassrooms.com/fr/courses/6175841-apprenez-a-programmer-avec-javascript)
+
+[Créez des pages web dynamiques avec JavaScript](https://openclassrooms.com/fr/courses/7697016-creez-des-pages-web-dynamiques-avec-javascript)
