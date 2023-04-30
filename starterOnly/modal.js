@@ -18,6 +18,9 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // fonction ouverture de la modal
 function launchModal() {
   modalbg.style.display = "block";
+  // snippet pour prevenir le scroll du body quand la modal est ouverte
+  document.body.style.position = "fixed";
+  document.body.style.top = `-${window.scrollY}px`;
 }
 
 // DOM Elements
@@ -29,6 +32,11 @@ closeBtn.addEventListener("click", closeModal);
 // fonction fermeture de la modal
 function closeModal() {
   modalbg.style.display = "none";
+  // snippet pour prevenir le scroll du body quand la modal est ouverte
+  const scrollY = document.body.style.top;
+  document.body.style.position = "";
+  document.body.style.top = "";
+  window.scrollTo(0, parseInt(scrollY || "0") * -1);
 }
 
 // comportement du bouton submit
