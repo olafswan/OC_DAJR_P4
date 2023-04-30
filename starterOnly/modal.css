@@ -28,27 +28,33 @@ p {
 
 img {
   padding-right: 1rem;
+  height: 35px;
 }
 
 .topnav {
   overflow: hidden;
   margin: 3.5%;
+  position: relative;
 }
 .header-logo {
   float: left;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .main-navbar {
   float: right;
 }
+
 .topnav a {
   float: left;
   display: block;
   color: #000000;
   text-align: center;
   padding: 12px 12px;
-  margin: 5px;
+  /* margin: 5px; */
   text-decoration: none;
-  font-size: 20px;
+  font-size: 1rem;
   font-family: Roboto, sans-serif;
 }
 
@@ -62,13 +68,15 @@ img {
   background-color: #ff0000;
   color: #ffffff;
   border-radius: 15px;
+  /* margin-top: 44px; */
 }
 
 .topnav .icon {
   display: none;
+  color: #ff0000;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .topnav a {
     display: none;
   }
@@ -76,9 +84,9 @@ img {
     float: right;
     display: block;
   }
-}
-
-@media screen and (max-width: 768px) {
+  .topnav a.active {
+    margin-top: 44px;
+  }
   .topnav.responsive {
     position: relative;
   }
@@ -92,16 +100,11 @@ img {
     display: block;
     text-align: left;
   }
-}
-
-@media screen and (max-width: 540px) {
-  .topnav a {
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
+  .topnav.responsive .header-logo {
+    /* top: 54px;
+    transform: translateY(-54px); */
+    position: inherit;
+    transform: translateY(2.5px);
   }
 }
 
@@ -188,6 +191,87 @@ main {
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
+}
+
+/** MOBILE VIEW  */
+
+@media screen and (max-width: 540px) {
+  .main-navbar a {
+    font-size: 1rem;
+  }
+  .hero-section {
+    min-height: 50vh !important;
+  }
+  .hero-content {
+    min-width: 200px !important;
+    /* TODO why I need !important?  */
+  }
+  .content {
+    z-index: 150;
+  }
+  .topnav {
+    /* z-index: 9; */
+    /* position: fixed;
+    top: 0; */
+    overflow-y: hidden;
+    /* height: 83px; */
+    /* margin-bottom: 2px;
+    margin-top: 2px; */
+    margin: 8px 20px 8px 27.5px;
+  }
+  .topnav img {
+    height: 25px;
+    /* TODO make the img position verticaly centering  */
+  }
+  .bground {
+    background-color: transparent;
+    /* z-index: 8; */
+    /* opacity: 0; */
+  }
+  .topnav a {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+    transform: translateX(-4.7px);
+  }
+  /* TODO show the top bar whith mobile view  */
+  /* margin-top de l'element de classe .content doit être égal à la hauteur de l'element de classe .topnav  */
+  .content {
+    margin-top: 54px;
+    margin-bottom: 0;
+  }
+  .main-navbar {
+    background-color: white;
+    border-radius: 15px;
+    /* border: 1px solid red; */
+    /* box-shadow: inset 0px 0px 0px 2px #ff0000; */
+  }
+  .copyrights {
+    font-size: 0.9rem !important;
+  }
+}
+
+@media screen and (max-width: 397px) {
+  .topnav {
+    /* margin-bottom: 2px;
+    margin-top: 2px; */
+  }
+  .hero-headline {
+    font-size: 2rem !important;
+    /* TODO why I need !important?  */
+  }
+  .hero-text {
+    font-size: 0.8rem;
+  }
+  .topnav img {
+    height: 18px;
+    /* TODO make the img position verticaly centering  */
+  }
+  .copyrights {
+    font-size: 0.85rem !important;
+  }
 }
 
 label {
@@ -438,12 +522,20 @@ input[data-error]::after {
   z-index: 1;
 }
 .hero-headline {
-  font-size: 6rem;
+  font-size: 5rem;
   font-weight: normal;
   white-space: nowrap;
 }
+@media screen and (max-width: 1000px) {
+  .hero-headline {
+    font-size: 4.5rem;
+  }
+  .hero-content {
+    padding: 35px;
+  }
+}
 .hero-text {
-  width: 146%;
+  width: 120%;
   font-weight: normal;
   margin-top: 57px;
   padding: 0;
@@ -464,6 +556,8 @@ input[data-error]::after {
   height: 100%;
   display: block;
   padding: 0;
+  object-fit: cover;
+  object-position: right bottom;
 }
 .copyrights {
   color: #fe142f;
@@ -488,7 +582,7 @@ footer {
   .hero-content {
     background: #fff;
     color: #000;
-    padding: 20px;
+    padding: 0px;
   }
   .hero-content::after {
     content: unset;
@@ -497,12 +591,15 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 2.5rem;
     white-space: normal;
+    font-weight: bold;
   }
   .hero-text {
+    margin-top: 12px;
     width: unset;
-    font-size: 1.5rem;
+    font-size: 1rem;
+    /* TODO fix the text who is hidden with slmall width  */
   }
   .hero-img img {
     border-radius: 10px;
@@ -514,7 +611,7 @@ footer {
     padding: 12px 35px;
   }
   .copyrights {
-    margin-top: 50px;
+    margin-top: 0px;
     text-align: center;
   }
 }
