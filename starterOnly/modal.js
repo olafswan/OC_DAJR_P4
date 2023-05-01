@@ -18,9 +18,8 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // fonction ouverture de la modal
 function launchModal() {
   modalbg.style.display = "block";
-  // snippet pour prevenir le scroll du body quand la modal est ouverte
+  // previent le scroll du body quand la modal est ouverte
   document.body.style.position = "fixed";
-  document.body.style.top = `-${window.scrollY}px`;
 }
 
 // DOM Elements
@@ -32,11 +31,9 @@ closeBtn.addEventListener("click", closeModal);
 // fonction fermeture de la modal
 function closeModal() {
   modalbg.style.display = "none";
-  // snippet pour prevenir le scroll du body quand la modal est ouverte
+  // autorise à nouveau le scroll du body
   const scrollY = document.body.style.top;
   document.body.style.position = "";
-  document.body.style.top = "";
-  window.scrollTo(0, parseInt(scrollY || "0") * -1);
 }
 
 // comportement du bouton submit
@@ -61,7 +58,7 @@ function getValue(inputId) {
   return input.value;
 }
 // stockage des id des inputs avec leur messages d'erreur associés
-// TODO ajouter une key isValid pour controler la validité de l'input ? utilisation d'un constructor
+// TODO ajouter une key isValid pour controler la validité de l'input ? utilisation d'un constructor ?
 const inputsIds = [
   {
     id: "first",
@@ -98,7 +95,7 @@ const inputsIds = [
 function showError(element, message) {
   // ajoute la classe data-error-visible
   element.setAttribute("data-error-visible", "true");
-  // TODO comprendre comment la classe : data-error-visible="true"
+  // TODO comprendre la synthaxe de la classe CSS : data-error-visible="true"
   // ajoute le message d'erreur en content de l'after
   element.setAttribute("data-error", message);
 }
@@ -151,7 +148,7 @@ function testInputsValidity() {
         // enlève l'eventuel message d'erreur
         hideError(input.closest(".formData"));
         // verifie la condition de validité de la donnée
-        if (inputValue.length >= 2) {
+        if (inputValue.length >= 2 && /\D+/g.test(inputValue)) {
           // fait passer la "bonne" variable sur true
           inputId === "first" ? (firstIsValid = true) : (lastIsValid = true);
         } else {
@@ -256,32 +253,6 @@ function testInputsValidity() {
   }
 }
 
-// // ancienne methode de fentere de remerciement a suppr
-
-// // fonction d'ouverture de la fenetre de confirmation d'inscription
-// function openConfirmation() {
-//   confirmationbg.style.display = "block";
-// }
-
-// // DOM Elements
-// const confirmationbg = document.querySelector(".bground-confirmation");
-// const closeConfirmationBtn = document.querySelector(".close-confirmation");
-// const submitConfirmationBtn = document.querySelector(
-//   ".btn-submit-confirmation"
-// );
-
-// // event click sur bouton close (X et Fermer)
-// closeConfirmationBtn.addEventListener("click", closeConfirmation);
-// submitConfirmationBtn.addEventListener("click", closeConfirmation);
-
-// // fonction de fermeture de la fenetre de confirmation
-// function closeConfirmation() {
-//   confirmationbg.style.display = "none";
-// }
-
-// //* gerer l'affichage du message de remerciement
-
-// -----------------------------------------------------
 // selection des elements du DOM
 const modalElements = document.querySelectorAll(".formData");
 const modalElements2 = document.querySelector(".text-label");
@@ -323,4 +294,6 @@ function restoreForm() {
   }
   // suppression de la classe hidden à l'elements de classe .text-label
   modalElements2.classList.remove("hidden");
+  // modification du contenu du bouton submit
+  submitBtn.value = "C'est parti";
 }
