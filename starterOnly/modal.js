@@ -188,7 +188,7 @@ function testInputsValidity() {
         // enlève l'eventuel message d'erreur
         hideError(quantity.closest(".formData"));
         // verifie la condition de validité de la donnée
-        if (/^\d+$/.test(inputValue)) {
+        if (/^\d+$/.test(inputValue) && inputValue >= 0) {
           // fait passer la variable sur true
           quantityIsValid = true;
         } else {
@@ -296,4 +296,56 @@ function restoreForm() {
   modalElements2.classList.remove("hidden");
   // modification du contenu du bouton submit
   submitBtn.value = "C'est parti";
+}
+
+// TEST MODE (désactive les type input email, date et number pour tester le contrôle des inputs)
+
+// -----------
+// Konami Code
+const pattern = [
+  "ArrowUp",
+  "ArrowUp",
+  "ArrowDown",
+  "ArrowDown",
+  "ArrowLeft",
+  "ArrowRight",
+  "ArrowLeft",
+  "ArrowRight",
+  "b",
+  "a",
+];
+let current = 0;
+var keyHandler = function (event) {
+  // si la touche n'est pas le bonne remettre à 0 la variable current
+  if (pattern.indexOf(event.key) < 0 || event.key !== pattern[current]) {
+    current = 0;
+    return;
+  }
+  // incrémente la variable current
+  console.log("🚀 ~ file: modal.js:321 ~ keyHandler ~ current:", current);
+  current++;
+  // si le code est complet reset current
+  if (pattern.length === current) {
+    current = 0;
+    // toggle la fonction test
+    document.getElementById("email").type == "email" ? testOn() : testOff();
+  }
+};
+
+// Listen for keydown events
+document.addEventListener("keydown", keyHandler, false);
+// -----------
+
+// active le mode test (désactive le type mail, date)
+function testOn() {
+  document.getElementById("email").type = "text";
+  document.getElementById("birthdate").type = "text";
+  document.getElementById("quantity").type = "text";
+}
+
+// active le mode test (désactive le type mail, date)
+function testOff() {
+  document.getElementById("email").type = "email";
+  document.getElementById("birthdate").type = "date";
+  document.getElementById("quantity").type = "number";
 }
