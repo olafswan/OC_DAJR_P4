@@ -18,8 +18,6 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // fonction ouverture de la modal
 function launchModal() {
   modalbg.style.display = "block";
-  // previent le scroll du body quand la modal est ouverte
-  document.body.style.position = "fixed";
 }
 
 // DOM Elements
@@ -31,9 +29,6 @@ closeBtn.addEventListener("click", closeModal);
 // fonction fermeture de la modal
 function closeModal() {
   modalbg.style.display = "none";
-  // autorise à nouveau le scroll du body
-  const scrollY = document.body.style.top;
-  document.body.style.position = "";
 }
 
 // comportement du bouton submit
@@ -322,7 +317,7 @@ var keyHandler = function (event) {
     return;
   }
   // incrémente la variable current
-  console.log("🚀 ~ file: modal.js:321 ~ keyHandler ~ current:", current);
+  console.log("current:", current);
   current++;
   // si le code est complet reset current
   if (pattern.length === current) {
