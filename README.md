@@ -65,3 +65,6 @@ Il y a beaucoup de travail à faire, mais vous êtes prêt à mettre en pratique
 [Apprenez à programmer avec JavaScript](https://openclassrooms.com/fr/courses/6175841-apprenez-a-programmer-avec-javascript)
 
 [Créez des pages web dynamiques avec JavaScript](https://openclassrooms.com/fr/courses/7697016-creez-des-pages-web-dynamiques-avec-javascript)
+
+### Résultat final lors du passage de la soutenance :
+[Page d'acceuil GameOn](https://olafswan.github.io/OC_DAJR_P4/starterOnly/index.html)
